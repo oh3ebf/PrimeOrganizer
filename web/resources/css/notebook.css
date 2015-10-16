@@ -1,0 +1,59 @@
+.ui-datatable-header {
+    text-align: left !important;
+}
+
+.scrollable {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.note-header-input {
+    width: 90%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.paper {
+    position:relative;
+    background:-webkit-linear-gradient(top,#f0f0f0 0%,white 5%) 0 0;
+    background:-moz-linear-gradient(top,#f0f0f0 0%,white 5%) 0 0;
+    background:linear-gradient(top,#f0f0f0 0%,white 5%) 0 0;
+    -webkit-background-size:100% 30px;
+    -moz-background-size:100% 30px;
+    -ms-background-size:100% 30px;
+    background-size:100% 30px;
+    height: 100%;
+}
+
+.paper:before{
+    content:'';
+    position:absolute;
+    width:0px;
+    top:0;
+    left:39px;
+    bottom:0;
+    border-left:1px solid #F9D3D3;
+    height: 95%
+}
+
+.paper-textarea{
+    border:none;
+    background-color:transparent !important;
+    height: 90%;
+    width: 95%;
+    padding:30px 0 0 55px;
+    line-height:30px;
+    min-height:210px;
+}
+
+.paper-form {
+    height: 85%;
+    width: 97%;
+    margin-left: 5px;
+}
+
+textarea.form-control{
+    height:auto;
+}
+
+

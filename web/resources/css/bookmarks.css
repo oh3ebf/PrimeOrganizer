@@ -1,0 +1,34 @@
+.bookmarks-listing {
+    height: 60%
+}
+
+.bookmarks-panel {
+    width: 100%;
+    height: auto;
+}
+
+.bookmarks-panel tr {
+    border: none !important;
+}
+
+.bookmarks-panel td {
+    border: none !important;
+}
+
+.bookmarks-label-col {
+     width: 100px;
+}
+
+.bookmarks-input-col {
+     //width: 98%;
+}
+
+.bookmarks-label {
+    margin-right: 5px;
+}
+
+.bookmarks-input {
+    margin-left: 5px;
+    width: 98%;
+}
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="application/index.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="application/bookmarks.xhtml" x="72" y="365" zoom="true"/>
+        <Node id="login.xhtml" x="738" y="84" zoom="true"/>
+        <Node id="templates/tiles/LeftMenu.xhtml" x="736" y="132" zoom="true"/>
+        <Node id="application/notebook.xhtml" x="420" y="154" zoom="true"/>
+        <Node id="templates/layout.xhtml" x="735" y="177" zoom="true"/>
+        <Node id="application/settings.xhtml" x="413" y="356" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

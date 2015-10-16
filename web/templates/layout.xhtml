@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:head>
+        <title>demo</title>              
+    </h:head>
+    <h:body>
+        <f:facet name="last">
+            <h:outputStylesheet library="css" name="default.css"/>
+        </f:facet>
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="0" header="Project Demo" resizable="false" 
+                          closable="false" collapsible="false" style="padding:0;overflow:visible" >
+                <h:form id="menu-bar-form">
+                    <p:menubar>
+                        <p:menuitem value="Back" action="backToMain" 
+                                    ajax="true" icon="ui-icon-arrowreturnthick-1-w"></p:menuitem>                        
+                        <p:submenu label="Help" icon="ui-icon-help">
+                            <p:menuitem value="Contents" url="#" />
+                            
+                        </p:submenu>                                               
+                        <f:facet name="options">
+                            <p:commandButton value="Logout" action="#{loginController.logout()}" icon="ui-icon-extlink"/>
+                        </f:facet>
+                    </p:menubar>
+                </h:form>
+            </p:layoutUnit>
+
+            <!-- <p:layoutUnit position="south" size="100" header="Bottom" resizable="true" closable="true" collapsible="true">
+                <h:outputText value="South unit content." />
+            </p:layoutUnit> -->
+            <!--
+            <p:layoutUnit position="west" size="200" header="Menu" resizable="false" closable="false" collapsible="false" >
+                    <ui:include src="../templates/tiles/LeftMenu.xhtml" />
+            </p:layoutUnit>
+
+            <p:layoutUnit position="east" size="200" header="Help" resizable="true" closable="true" collapsible="true" effect="drop">
+                <h:outputText value="Right unit content." />
+            </p:layoutUnit>
+            -->
+            <p:layoutUnit position="center" style="border: 0;">
+                <ui:insert name="content">Put default content here, if any.</ui:insert>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>

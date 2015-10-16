@@ -1,0 +1,60 @@
+<ui:composition template="/templates/layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                >
+    <ui:define name="content">     
+        <f:facet name="last">
+            <h:outputStylesheet library="css" name="notebook.css"/>
+        </f:facet>
+        <p:layout style="visibility: hidden;">
+            <p:layoutUnit position="west" maxSize="400">
+                <h:form id="note-listing-form">
+                    <p:dataTable value="#{notebookController.notes}" var="note" widgetVar="notesTable"
+                                 emptyMessage="No memos found with given criteria" selectionMode="single"
+                                 selection="#{notebookController.selectedNote}" rowKey="#{note.id}"
+                                 paginator="true" rows="20" 
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="20,40,60,80,100">
+                        <f:facet name="header">
+                            <p:outputPanel>
+                                <h:outputText value="Search:"/>    
+                                <p:spacer width="10" height="10"/>
+                                <p:inputText id="globalFilter" onkeyup="PF('notesTable').filter()" 
+                                             style="width:80%" placeholder="Enter keyword"/>
+                            </p:outputPanel> 
+                        </f:facet>
+                        <p:ajax event="rowSelect" process="@this" update=":note-edit-form" />
+                        <p:column headerText="Notes" filterBy="#{note.header}" filterMatchMode="contains" filterStyle="display:none">
+                            <h:outputText value="#{note.header}"/>
+                        </p:column>                        
+                    </p:dataTable>                   
+                </h:form>
+            </p:layoutUnit>
+            <p:layoutUnit position="center" >
+                <h:form id="note-edit-form" class="paper-form">
+                    <p:outputLabel id="note-edit-created">Created at: #{notebookController.currentItem.createdAt}</p:outputLabel>
+                    <p:spacer width="10" height="10" />
+                    <p:outputLabel id="note-edit-modfied">Modified at: #{notebookController.currentItem.updatedAt}</p:outputLabel>
+                    <br></br>
+                    <p:outputLabel>Header:</p:outputLabel>
+                    <p:spacer width="10" height="10" />
+                    <p:inputText id="note-edit-header" class="note-header-input" value="#{notebookController.currentItem.header}"></p:inputText>
+                    <br></br>
+                    <div class="paper">
+                        <p:inputTextarea id="note-edit-content" class="scrollable paper-textarea" 
+                                         value="#{notebookController.currentItem.content}"></p:inputTextarea>
+                    </div> 
+                    <p:commandButton value="Save" action="#{notebookController.saveNoteBookItem()}"
+                                     onclick="notesTable.unselectAllRows()" update=":note-edit-form"></p:commandButton>
+                    <p:commandButton value="New" action="#{notebookController.addNewNoteBookItem()}" 
+                                     onclick="notesTable.unselectAllRows()" update=":note-edit-form, :note-listing-form"></p:commandButton>
+                    <p:commandButton value="Delete" action="#{notebookController.deleteNoteBookItem()}" 
+                                     onclick="notesTable.unselectAllRows()" update=":note-edit-form, :note-listing-form"></p:commandButton>
+                </h:form>
+            </p:layoutUnit>
+        </p:layout>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,90 @@
+<ui:composition template="/templates/layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                >
+    <ui:define name="content">
+        <f:facet name="last">
+            <h:outputStylesheet library="css" name="bookmarks.css"/>
+        </f:facet>
+        <p:layout>
+            <p:layoutUnit position="west" maxSize="400">
+                <h:form id="bookmarks-tree-form">
+                    <p:tree value="#{bookmarksController.root}" var="node" selectionMode="single"
+                            selection="#{bookmarksController.selectedTreeNode}" >
+                        <p:ajax event="select" process="@this" update=":bookmarks-list-form"/>
+                        <p:treeNode type="default">
+                            <h:outputText value="#{node}" />
+                        </p:treeNode>
+                    </p:tree>
+                </h:form>
+            </p:layoutUnit>
+            <p:layoutUnit position="center">
+                <p:panel class="bookmarks-listing">
+                    <h:form id="bookmarks-list-form">
+                        <p:dataTable value="#{bookmarksController.bookMarkList}" var="bookmark" 
+                                     selectionMode="single" selection="#{bookmarksController.selectedBookMark}"
+                                     rowKey="#{bookmark.id}" emptyMessage="No bookmarks found">
+                            <p:ajax event="rowSelect" process="@this" update=":bookmarks-detail-form"/>
+                            <p:column headerText="Id">
+                                <h:outputText value="#{bookmark.id}" />
+                            </p:column>
+                            <p:column headerText="Name">
+                                <h:outputText value="#{bookmark.name}" />
+                            </p:column>
+                            <p:column headerText="Address">
+                                <h:outputText value="#{bookmark.url}" />
+                            </p:column>                            
+                        </p:dataTable>
+                    </h:form>
+                </p:panel>
+                <h:form id="bookmarks-detail-form">
+                    <p:panelGrid class="bookmarks-panel" columnClasses="bookmarks-label-col, bookmarks-input-col">
+                        <p:row>
+                            <p:column class="bookmarks-label-col">
+                                <p:outputLabel value="Name:" class="bookmarks-label"></p:outputLabel>
+                            </p:column>
+                            <p:column class="bookmarks-input-col">
+                                <p:inputText class="bookmarks-input" value="#{bookmarksController.selectedBookMark.name}"></p:inputText>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Url:" class="bookmarks-label"></p:outputLabel>
+                            </p:column>
+                            <p:column>
+                                <p:inputText class="bookmarks-input" value=""></p:inputText>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Key words:" class="bookmarks-label"></p:outputLabel>
+                            </p:column>
+                            <p:column>
+                                <p:inputText class="bookmarks-input"></p:inputText>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Quick command:" class="bookmarks-label"></p:outputLabel>
+                            </p:column>
+                            <p:column>
+                                <p:inputText class="bookmarks-input"></p:inputText>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Description:" class="bookmarks-label"></p:outputLabel>
+                            </p:column>
+                            <p:column>
+                                <p:inputText class="bookmarks-input" value=""></p:inputText>
+                            </p:column>
+                        </p:row>     
+                    </p:panelGrid>
+                </h:form>
+            </p:layoutUnit>
+        </p:layout>        
+    </ui:define>
+</ui:composition>
